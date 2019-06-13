@@ -16,9 +16,11 @@
 
 ## What's this?
 
-This is a Visual Studio Code multi-root workspace containing separate small C++ projects.
+Running NodeJS/{Java,Type}Script in vscode? Easy. 
+C++? Not so much.
 
-Running Node/JavaScript in vscode? Easy. C++? Not so much.
+This is a Visual Studio Code multi-root workspace containing separate small C++ projects. helloworld and helloworld2 have the same contents. I wanted to see if the tasks would work for each project. Yes! The task picker will tell you which project your are currently in.
+
 
 You **should** be able to simply copy the helloworld project, add the copy to the workspace, then replace the code with your own.
 
