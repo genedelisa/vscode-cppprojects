@@ -1,0 +1,74 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"options":{
+		"env": {
+			"ename": "${workspaceFolderBasename}"
+		}
+	  },
+	"presentation": {
+		"clear": true,
+		"echo": false,
+		"reveal": "always",
+		"focus": true,
+		"panel": "shared",
+		"showReuseMessage": false
+	},
+
+    "tasks": [
+		{
+			"type": "shell",
+			"label": "clang++ C++17 build active file",
+			"command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"args": [
+				"-std=c++17",
+				"-stdlib=libc++",
+				"-g",
+				"${file}",
+				"-o",
+//				"${fileDirname}/${fileBasenameNoExtension}"
+				"${workspaceFolder}/build/${fileBasenameNoExtension}"
+
+			],
+			"options": {
+				"cwd": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "process",
+			"label": "make",
+			"command": "/usr/bin/make",
+			"args": [
+				"-C",
+				"${workspaceFolder}/build",
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "cmake and make",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceFolder}",
+			},
+			"command": "rm -rf build/* && cmake -B build -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Debug -DPROJECT_NAME=${workspaceFolderBasename} && make -C build",
+			"group": "build",
+
+			"problemMatcher": []
+		},
+		{
+			"label": "clean",
+			"type": "shell",
+			"command": "rm -rf ./build/*",
+			"problemMatcher": []
+		}
+
+	]
+}
